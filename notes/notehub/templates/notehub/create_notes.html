@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block title %}Create Notes | Scribble{% endblock title %}
+
+{% block content %}
+<div class="max-w-2xl mx-[20px] md:mx-auto mt-[100px] p-6 bg-gray-800 rounded-lg shadow-lg !pb-[30px]">
+    <h2 class="text-2xl font-bold text-white mb-4">Create a New Note</h2>
+    
+    <form method="POST" enctype="multipart/form-data" class="space-y-4">
+        {% csrf_token %}
+        
+        <div>
+            <label for="id_title" class="block text-gray-300 font-medium">Title</label>
+            <input type="text" name="title" id="id_title" placeholder="Enter title" class="w-full mt-1 p-3 border border-gray-600 bg-gray-900 text-white rounded-lg focus:ring focus:ring-blue-500">
+        </div>
+
+        <div>
+            <label for="id_categories" class="block text-gray-300 font-medium">Categories</label>
+            <select name="categories" id="id_categories" class="w-full mt-1 p-3 border border-gray-600 bg-gray-900 text-white rounded-lg focus:ring focus:ring-blue-500 cursor-pointer">
+                {% for category in form.categories.field.choices %}
+                    <option value="{{ category.0 }}">{{ category.1 }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div>
+            <label for="id_content" class="block text-gray-300 font-medium">Content</label>
+            <textarea name="content" placeholder="Enter description" id="id_content" rows="4" class="w-full mt-1 p-3 border border-gray-600 bg-gray-900 text-white rounded-lg focus:ring focus:ring-blue-500"></textarea>
+        </div>
+        
+        <div>
+            <label for="id_image" class="block text-gray-300 font-medium">Upload Image (optional)</label>
+            <input type="file" name="image" id="id_image" class="w-full cursor-pointer mt-1 p-2 border border-gray-600 bg-gray-900 text-white rounded-lg focus:ring focus:ring-blue-500">
+        </div>
+        
+        <button type="submit" class="w-full bg-blue-500 text-white py-3 rounded-lg font-medium hover:bg-blue-600 transition-all duration-300">
+            Create Note
+        </button>
+    </form>
+</div>
+{% endblock %}

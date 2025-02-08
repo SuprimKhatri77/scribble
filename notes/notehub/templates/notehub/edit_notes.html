@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+{% block title %}Edit Note | Scribble{% endblock title %}
+
+{% block content %}
+<div class="mt-[100px] max-w-3xl mx-auto px-4 !pb-[30px]">
+    <div class="bg-gray-800 p-6 rounded-lg">
+        <h1 class="text-3xl font-bold mb-8 text-white">Edit Note</h1>
+        
+        <form method="post" enctype="multipart/form-data" class="space-y-6">
+            {% csrf_token %}
+            
+            <!-- Title Input -->
+            <div class="mb-4">
+                <label for="{{ form.title.id_for_label }}" class="block text-gray-200 text-lg mb-2">Title</label>
+                <input type="text" name="{{ form.title.name }}" value="{{ form.title.value|default:'' }}" 
+                       class="w-full bg-gray-700 text-gray-100 rounded p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       id="{{ form.title.id_for_label }}">
+                {% if form.title.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ form.title.errors|join:", " }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Categories Input -->
+            <div class="mb-4">
+                <label for="{{ form.categories.id_for_label }}" class="block text-gray-200 text-lg mb-2">Categories</label>
+                <select name="{{ form.categories.name }}" 
+                        class="w-full bg-gray-700 text-gray-100 rounded p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        id="{{ form.categories.id_for_label }}">
+                    {% for value, label in form.categories.field.choices %}
+                        <option value="{{ value }}" {% if form.categories.value|stringformat:"s" == value|stringformat:"s" %}selected{% endif %}>
+                            {{ label }}
+                        </option>
+                    {% endfor %}
+                </select>
+                {% if form.categories.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ form.categories.errors|join:", " }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Content Input -->
+            <div class="mb-4">
+                <label for="{{ form.content.id_for_label }}" class="block text-gray-200 text-lg mb-2">Content</label>
+                <textarea name="{{ form.content.name }}" 
+                          class="w-full bg-gray-700 text-gray-100 rounded p-3 min-h-[300px] focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          id="{{ form.content.id_for_label }}">{{ form.content.value|default:'' }}</textarea>
+                {% if form.content.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ form.content.errors|join:", " }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Image Input -->
+            <div class="mb-4">
+                <label for="{{ form.image.id_for_label }}" class="block text-gray-200 text-lg mb-2">Image</label>
+                {% if note.image %}
+                    <div class="mb-4 p-4 bg-gray-700 rounded-lg inline-block">
+                        <img src="{{ note.image.url }}" alt="Current image" class="w-40 h-40 object-cover rounded-lg shadow-lg">
+                        <p class="text-gray-300 text-sm mt-2">Current Image</p>
+                    </div>
+                {% endif %}
+                <input type="file" name="{{ form.image.name }}" accept="image/*"
+                       class="w-full mt-3 text-gray-200 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-gray-700 file:text-gray-200 hover:file:bg-gray-600 file:cursor-pointer"
+                       id="{{ form.image.id_for_label }}">
+                {% if form.image.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ form.image.errors|join:", " }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Submit Button -->
+            <div class="flex justify-center mt-8">
+                <button type="submit" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 transform hover:scale-105">
+                    Update Note
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

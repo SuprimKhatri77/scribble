@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block title %}Scribble{% endblock title %}
+
+{% block content %}
+<div class="my-[90px] w-full md:mt-[105px] lg:mt-[120px] !mb-[20px]">
+    <div class="max-w-screen-xl mx-auto w-full flex flex-col gap-10 items-center md:grid md:grid-cols-2 md:gap-8 md:px-4 lg:grid-cols-3 lg:gap-6 lg:px-4 lg:items-start">
+        {% for note in notes %}
+        <div class="bg-gray-800 shadow-[0_8px_20px_rgba(59,130,246,0.15)] py-5 px-8 flex flex-col gap-3 rounded-xl text-gray-200 hover:shadow-[0_15px_30px_rgba(59,130,246,0.25)] transition-all duration-300 ease-in-out hover:scale-105 cursor-pointer w-[320px] md:w-full">
+            <div class="flex itesm-center justify-between text-center md:text-left">
+
+                <p class="flex gap-1"><strong>Title: </strong> {{note.title}} </p>
+            </div>
+            <span>
+                <strong>Category: </strong>
+                    {% for category in note.categories.all %}
+                        <a href="{% url "notehub:category" category.slug %}" class="text-sm hover:underline text-blue-500">
+                            <span>{{ category.name }}</span>
+                            {% if not forloop.last %}, {% endif %}
+                        </a>
+                    {% endfor %}
+            </span>
+            <p>By {{note.author.username}} </p>
+            <p><strong>Content: </strong> <p class="text-justify">{{note.content}}</p> </p>
+            {% if note.image %}
+            <span><img src="{{note.image.url}}" alt="{{note.title}}" class="h-[200px] w-[200px]"></span>
+            {% endif %}
+            <small><p class="ml-auto">{{note.created_at|timesince}} ago </small> </p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
