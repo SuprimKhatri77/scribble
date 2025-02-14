@@ -70,3 +70,20 @@ def category_note_view(request,slug):
     return render(request,'notehub/category_notes.html',{'notes':notes,'categories':categories})
 
 
+def detail_notes_view(request, slug):
+    note = get_object_or_404(Note, slug=slug)
+    categories = note.categories.all()  
+    
+    if categories.exists():  
+        related_notes = Note.objects.filter(categories__in=categories).exclude(slug=note.slug).distinct()
+    else:
+        related_notes = Note.objects.none()  
+
+    context = {
+        'note': note,
+        'notes': related_notes,
+    }
+
+    return render(request, 'notehub/notes_detail.html', context)
+
+

@@ -15,3 +15,5 @@ closeIcon.addEventListener('click',(event)=>{
     mobileNav.classList.add('hidden');
 })
 
+
+

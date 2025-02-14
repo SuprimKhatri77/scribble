@@ -832,13 +832,13 @@ select {
   margin-bottom: 90px;
 }
 
-.mx-\[10px\] {
-  margin-left: 10px;
-  margin-right: 10px;
+.my-\[100px\] {
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
 
-.\!mb-\[10px\] {
-  margin-bottom: 10px !important;
+.\!mb-\[20px\] {
+  margin-bottom: 20px !important;
 }
 
 .mb-2 {
@@ -897,24 +897,12 @@ select {
   margin-top: 100px;
 }
 
-.\!mb-\[20px\] {
-  margin-bottom: 20px !important;
+.mt-\[20px\] {
+  margin-top: 20px;
 }
 
-.ml-\[10px\] {
-  margin-left: 10px;
-}
-
-.mr-\[10px\] {
-  margin-right: 10px;
-}
-
-.ml-\[20px\] {
-  margin-left: 20px;
-}
-
-.mr-\[20px\] {
-  margin-right: 20px;
+.mt-\[90px\] {
+  margin-top: 90px;
 }
 
 .block {
@@ -977,6 +965,11 @@ select {
   width: 100%;
 }
 
+.w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
 .min-w-full {
   min-width: 100%;
 }
@@ -1001,6 +994,11 @@ select {
   max-width: 1280px;
 }
 
+.max-w-fit {
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+}
+
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
@@ -1011,6 +1009,10 @@ select {
 
 .flex-col {
   flex-direction: column;
+}
+
+.items-start {
+  align-items: flex-start;
 }
 
 .items-center {
@@ -1200,6 +1202,11 @@ select {
   padding-right: 2rem;
 }
 
+.px-\[10px\] {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 .px-\[4\%\] {
   padding-left: 4%;
   padding-right: 4%;
@@ -1225,11 +1232,6 @@ select {
   padding-bottom: 1.5%;
 }
 
-.px-\[10px\] {
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
 .\!pb-\[30px\] {
   padding-bottom: 30px !important;
 }
@@ -1248,6 +1250,14 @@ select {
 
 .font-serif {
   font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.font-\[\'Poppins\'\] {
+  font-family: 'Poppins';
+}
+
+.font-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 .text-2xl {
@@ -1555,6 +1565,10 @@ select {
     display: block;
   }
 
+  .md\:flex {
+    display: flex;
+  }
+
   .md\:grid {
     display: grid;
   }
@@ -1567,8 +1581,17 @@ select {
     width: 100%;
   }
 
+  .md\:w-fit {
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:justify-center {
+    justify-content: center;
   }
 
   .md\:gap-8 {
@@ -1598,14 +1621,14 @@ select {
     text-align: left;
   }
 
-  .md\:text-3xl {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-  }
-
   .md\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
+  }
+
+  .md\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
   }
 }
 
@@ -1614,12 +1637,37 @@ select {
     margin-top: 120px;
   }
 
+  .lg\:flex {
+    display: flex;
+  }
+
+  .lg\:w-fit {
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+
   .lg\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .lg\:grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .lg\:place-items-center {
+    place-items: center;
+  }
+
   .lg\:items-start {
     align-items: flex-start;
+  }
+
+  .lg\:items-center {
+    align-items: center;
+  }
+
+  .lg\:justify-center {
+    justify-content: center;
   }
 
   .lg\:gap-6 {
@@ -1636,12 +1684,21 @@ select {
     line-height: 2.25rem;
   }
 
-  .lg\:text-4xl {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
+  .lg\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  .lg\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 
   .lg\:font-extrabold {
     font-weight: 800;
+  }
+
+  .lg\:font-bold {
+    font-weight: 700;
   }
 }
